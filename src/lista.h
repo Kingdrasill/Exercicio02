@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 #define MAXTAM 100
 
 typedef struct Item Item;
@@ -8,7 +9,7 @@ typedef struct Lista Lista;
 
 struct Item
 {
-    int value;
+    char value[20];
 };
 
 struct Lista
@@ -20,6 +21,8 @@ struct Lista
 
 void FLVazia(Lista *lista);
 
+void Imprime(Lista *lista);
+
 bool Vazia(Lista *lista);
 
 bool Cheia(Lista *lista);
@@ -28,4 +31,4 @@ bool Insere(Lista *lista, Item *d);
 
 bool Remove(Lista *lista, Item *d);
 
-bool Procura(Lista *lista, Item *d, int *p);
+int Procura(Lista *lista, Item *d);
