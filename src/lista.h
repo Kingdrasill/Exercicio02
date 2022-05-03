@@ -23,12 +23,6 @@ void FLVazia(Lista *lista);
 
 void Imprime(Lista *lista);
 
-bool Vazia(Lista *lista);
-
-bool Cheia(Lista *lista);
-
 bool Insere(Lista *lista, Item *d);
 
 bool Remove(Lista *lista, Item *d);
-
-int Procura(Lista *lista, Item *d);
