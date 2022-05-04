@@ -3,13 +3,15 @@
 #include <stdbool.h>
 #include <string.h>
 #define MAXTAM 100
+#define NOME_MAXTAM 30
+#define FILE_MAXTAM 50
 
 typedef struct Item Item;
 typedef struct Lista Lista;
 
 struct Item
 {
-    char value[20];
+    char value[NOME_MAXTAM];
 };
 
 struct Lista

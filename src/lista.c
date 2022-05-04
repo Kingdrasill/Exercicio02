@@ -35,7 +35,7 @@ bool Remove(Lista *lista, Item *d) {
     }
     
     for(int i=0; i<lista->Ultimo; i++){
-        if(lista->vet[i].value == d->value) {
+        if(strcmp(lista->vet[i].value,d->value) == 0) {
             aux = i;
             ok = true;
             i = lista->Ultimo;
