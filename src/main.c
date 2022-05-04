@@ -16,7 +16,8 @@ int main() {
     fp = fopen(arquivo, "r");
     if(fp != NULL) {
         while(fgets(str, NOME_MAXTAM, fp) != NULL) {
-            strtok(str, "\n");
+            strtok(str, '\n');
+            strtok(str, ' ');
             strcpy(D.value, str);
             Insere(&L, &D);
         }
