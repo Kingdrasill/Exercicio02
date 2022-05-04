@@ -12,6 +12,7 @@ typedef struct Lista Lista;
 struct Item
 {
     char value[NOME_MAXTAM];
+    int ref;
 };
 
 struct Lista
@@ -28,3 +29,7 @@ void Imprime(Lista *lista);
 bool Insere(Lista *lista, Item *d);
 
 bool Remove(Lista *lista, Item *d);
+
+void NoRepeat(Lista *lista);
+
+bool FindRepetition(Lista *l, Item d);

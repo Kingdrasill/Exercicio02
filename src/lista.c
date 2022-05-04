@@ -6,12 +6,16 @@ void FLVazia(Lista *lista) {
 }
 
 void Imprime(Lista *lista) {
+    int aux;
+
     if(lista->Primeiro == lista->Ultimo) {
         printf("LISTA VAZIA!\n");
         return;
     }
-    for(int i=0; i<lista->Ultimo; i++)
-        printf("Nome %d: %s\n", i+1, lista->vet[i].value);
+    for(int i=0; i<lista->Ultimo; i++) {
+        aux = lista->vet[i].ref;
+        printf("Nome %d: %s\n", i+1, lista->vet[aux].value);
+    }
 }
 
 bool Insere(Lista *lista, Item *d) {
@@ -20,6 +24,7 @@ bool Insere(Lista *lista, Item *d) {
         return false;
     } 
     
+    lista->vet[lista->Ultimo].ref = lista->Ultimo;
 	strcpy(lista->vet[lista->Ultimo].value, d->value);
 	lista->Ultimo++;
     return true;
@@ -49,5 +54,34 @@ bool Remove(Lista *lista, Item *d) {
         lista->Ultimo--;
     }
     
+    return ok;
+}
+
+void NoRepeat(Lista *lista) {
+    Item aux;
+    
+    for(int i=0; i<lista->Ultimo; i++) {
+        aux = lista->vet[i];
+
+        if(FindRepetition(lista, aux)) {
+            for(int j=(i+1); j<lista->Ultimo; j++) {
+                if(!(strcmp("", aux.value) == 0) && strcmp(lista->vet[j].value, aux.value) == 0) {
+                    strcpy(lista->vet[j].value, "");
+                    lista->vet[j].ref = aux.ref;
+                }
+            }
+        }
+    }
+}
+
+bool FindRepetition(Lista *l, Item d) {
+    bool ok = false;
+
+    for(int i=d.ref; i<l->Ultimo; i++) {
+        if(strcmp(l->vet[i].value, d.value) == 0) {
+            ok = true;
+            i = l->Ultimo;
+        }
+    }
     return ok;
 }
