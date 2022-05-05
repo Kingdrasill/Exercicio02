@@ -6,15 +6,15 @@ void FLVazia(Lista *lista) {
 }
 
 void Imprime(Lista *lista) {
-    int aux;
 
     if(lista->Primeiro == lista->Ultimo) {
         printf("LISTA VAZIA!\n");
         return;
     }
     for(int i=0; i<lista->Ultimo; i++) {
-        aux = lista->vet[i].ref;
-        printf("Nome %d: %s\n", i+1, lista->vet[aux].value);
+        if(lista->vet[i].rep != -1) {
+            printf("%s\tRepeticoes %d\n", lista->vet[i].value, lista->vet[i].rep);
+        }
     }
 }
 
@@ -24,8 +24,8 @@ bool Insere(Lista *lista, Item *d) {
         return false;
     } 
     
-    lista->vet[lista->Ultimo].ref = lista->Ultimo;
 	strcpy(lista->vet[lista->Ultimo].value, d->value);
+    lista->vet[lista->Ultimo].rep = 0;
 	lista->Ultimo++;
     return true;
 }
@@ -40,7 +40,7 @@ bool Remove(Lista *lista, Item *d) {
     }
     
     for(int i=(lista->Ultimo-1); i>=0; i--){
-        if(strcmp(lista->vet[lista->vet[i].ref].value,d->value) == 0) {
+        if(strcmp(lista->vet[i].value,d->value) == 0) {
             aux = i;
             ok = true;
             i = -1;
@@ -50,7 +50,6 @@ bool Remove(Lista *lista, Item *d) {
     if(ok){
         for(int i=aux; i<=lista->Ultimo; i++) {
             lista->vet[i] = lista->vet[i+1];
-            lista->vet[i].ref--;
         }
         lista->Ultimo--;
     }
@@ -58,31 +57,47 @@ bool Remove(Lista *lista, Item *d) {
     return ok;
 }
 
-void NoRepeat(Lista *lista) {
-    Item aux;
-    
-    for(int i=0; i<lista->Ultimo; i++) {
-        aux = lista->vet[i];
-
-        if(FindRepetition(lista, aux)) {
-            for(int j=(i+1); j<lista->Ultimo; j++) {
-                if(!(strcmp("", aux.value) == 0) && strcmp(lista->vet[j].value, aux.value) == 0) {
-                    strcpy(lista->vet[j].value, "");
-                    lista->vet[j].ref = aux.ref;
-                }
-            }
+void NoRepeat(Lista *l) {
+    for(int i=0; i<l->Ultimo; i++) {
+        if(!(strcmp(l->vet[i].value, "") == 0)) {
+            RemoveRepetition(l, &l->vet[i], i);
         }
     }
 }
 
-bool FindRepetition(Lista *l, Item d) {
-    bool ok = false;
-
-    for(int i=d.ref; i<l->Ultimo; i++) {
-        if(strcmp(l->vet[i].value, d.value) == 0) {
-            ok = true;
-            i = l->Ultimo;
+void RemoveRepetition(Lista *l, Item *d, int pos) {
+    for(int i=(pos+1); i<l->Ultimo; i++) {
+        if(strcmp(d->value, l->vet[i].value) == 0) {
+            d->rep++;
+            strcpy(l->vet[i].value, "");
+            l->vet[i].rep = -1;
         }
     }
-    return ok;
+}
+
+bool LerArquivo(Lista *l) {
+    FILE *fp;
+    Item D;
+    char str[NOME_MAXTAM];
+    char arquivo[FILE_MAXTAM];
+
+    printf("Nome do arquivo onde esta os nomes iniciais(com extensao): ");
+	fgets(arquivo, FILE_MAXTAM, stdin);
+	strtok(arquivo, "\n");
+
+    fp = fopen(arquivo, "r");
+    if (fp == NULL) {
+        printf("\nErro!Nao foi possivel abrir o arquivo!\n");
+        exit(1);
+    } else {
+        while(fgets(str, NOME_MAXTAM, fp) != NULL) {
+            strtok(str, "\n");
+            strcpy(D.value, str);
+            Insere(l, &D);
+        }
+        printf("\nLista de nomes iniciais: \n\n");
+        Imprime(l);
+    }
+    fclose(fp);
+    return true;
 }
