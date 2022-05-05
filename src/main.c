@@ -23,8 +23,6 @@ int main() {
     } else {
         while(fgets(str, NOME_MAXTAM, fp) != NULL) {
             strtok(str, "\n");
-            strtok(str, " ");
-            D.ref = -1;
             strcpy(D.value, str);
             Insere(&L, &D);
         }
