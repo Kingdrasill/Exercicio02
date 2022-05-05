@@ -34,4 +34,6 @@ void NoRepeat(Lista *l);
 
 void RemoveRepetition(Lista *l, Item *d, int pos);
 
+int FindFreeSpace(Lista *l);
+
 bool LerArquivo(Lista *l);

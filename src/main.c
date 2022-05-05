@@ -13,6 +13,8 @@ int main() {
         exit(1);
     }
     NoRepeat(&L);
+    printf("\nLista de nomes com repeticoes retiradas: \n\n");
+    Imprime(&L);
 
     while(cont) {
         printf("\n1 - Inserir nome na lista\n");
@@ -31,6 +33,7 @@ int main() {
                 strtok(str, " ");
                 strcpy(D.value, str);
                 Insere(&L, &D);
+                NoRepeat(&L);
                 break;
 
             case 2:

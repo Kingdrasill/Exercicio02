@@ -6,7 +6,6 @@ void FLVazia(Lista *lista) {
 }
 
 void Imprime(Lista *lista) {
-
     if(lista->Primeiro == lista->Ultimo) {
         printf("LISTA VAZIA!\n");
         return;
@@ -19,14 +18,17 @@ void Imprime(Lista *lista) {
 }
 
 bool Insere(Lista *lista, Item *d) {
-    if(lista->Ultimo >= MAXTAM) {
+    int aux = FindFreeSpace(lista);
+    if(lista->Ultimo >= MAXTAM && aux != -1) {
         printf("LISTA CHEIA!\n");
         return false;
     } 
-    
-	strcpy(lista->vet[lista->Ultimo].value, d->value);
-    lista->vet[lista->Ultimo].rep = 0;
-	lista->Ultimo++;
+    if(aux == -1) {
+        aux = lista->Ultimo;
+	    lista->Ultimo++;
+    }
+	strcpy(lista->vet[aux].value, d->value);
+    lista->vet[aux].rep = 0;
     return true;
 }
 
@@ -73,6 +75,17 @@ void RemoveRepetition(Lista *l, Item *d, int pos) {
             l->vet[i].rep = -1;
         }
     }
+}
+
+int FindFreeSpace(Lista *l) {
+    int aux =-1;
+    for(int i=0; i<l->Ultimo; i++) {
+        if(strcmp(l->vet[i].value, "") == 0) {
+            aux = i;
+            i = l->Ultimo;
+        }
+    }
+    return aux;
 }
 
 bool LerArquivo(Lista *l) {
