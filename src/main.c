@@ -49,13 +49,18 @@ int main() {
                 fgets(str, NOME_MAXTAM, stdin);
                 strtok(str, "\n");
                 strtok(str, " ");
-                D.ref = -1;
                 strcpy(D.value, str);
                 Insere(&L, &D);
                 NoRepeat(&L);
                 break;
 
             case 2:
+                printf("\nNome a ser removido(Se for repetido a ultima aparicao dele sera apagada): ");
+                scanf("%c", (char *) stdin);
+                fgets(str, NOME_MAXTAM, stdin);
+                strtok(str, "\n");
+                strtok(str, " ");
+                strcpy(D.value, str);
                 Remove(&L, &D);
                 break;
 

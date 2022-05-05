@@ -39,17 +39,18 @@ bool Remove(Lista *lista, Item *d) {
         return false;
     }
     
-    for(int i=0; i<lista->Ultimo; i++){
-        if(strcmp(lista->vet[i].value,d->value) == 0) {
+    for(int i=(lista->Ultimo-1); i>=0; i--){
+        if(strcmp(lista->vet[lista->vet[i].ref].value,d->value) == 0) {
             aux = i;
             ok = true;
-            i = lista->Ultimo;
+            i = -1;
         }
     }
 
     if(ok){
         for(int i=aux; i<=lista->Ultimo; i++) {
             lista->vet[i] = lista->vet[i+1];
+            lista->vet[i].ref--;
         }
         lista->Ultimo--;
     }
