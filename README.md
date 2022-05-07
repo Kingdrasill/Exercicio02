@@ -13,6 +13,9 @@ Crie uma lista linear que consiga armazenar um conjunto de 100 nomes quaisquer, 
 
 # Solução
 
+<p style="text-align: justify;">A estrutura da lista linear para este progama é:</p>
+<img align="cente" src="imgs/estrutura.png">
+
 <p style="text-align: justify;">Para preencher a lista linear com os nomes foi feito um método que lé os nomes de um arquivo:</p>
 <img align="cente" src="">
 
