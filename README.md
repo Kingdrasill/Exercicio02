@@ -11,7 +11,7 @@ Crie uma lista linear que consiga armazenar um conjunto de 100 nomes quaisquer, 
   <li>Como você gerenciaria os espaços em branco para novas inserções? Qual seria o custo dessas novas inserções?</li>
 </ul>
 
-#Solução
+# Solução
 
 <p style="text-align: justify;">Para preencher a lista linear com os nomes foi feito um método que lé os nomes de um arquivo:</p>
 <img align="cente" src="">
