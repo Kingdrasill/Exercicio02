@@ -13,39 +13,30 @@ Crie uma lista linear que consiga armazenar um conjunto de 100 nomes quaisquer, 
 
 # Solução
 
-<p align="justify">
-Os espaçoes em brancos são tratados como espaços aonde novos nomes podem ser inseridos. O novo custo para inserções será o custo para verificar se há espaços em brancos se houver colocar por cim deles senão colocar na última posição mais o custo de inserir mais o custo para ver se le é repitido e se ele for repitido tornar ele um espaço em branco.
-</p>
-
-<p align="justify">A estrutura da lista linear para este progama é, cada item desta lista tem um <strong>value</strong> do tipo char[] que é um nome e <strong>rep</strong> do tipo int que é o número de vezes que o nome repitiu:</p>
+<p align="justify">A estrutura da lista linear que foi utilizada neste progama teve base nesta daqui [vide git]<a target="_blank" href="https://github.com/mpiress/linear_list">(https://github.com/mpiress/linear_list)</a>,as diferenças são que cada item desta lista tem um <strong>value</strong> do tipo char[] que é um nome e <strong>rep</strong> do tipo int que é o número de vezes que o nome foi inserido repetidamente. Abaixo está uma representação gráfiaca da estrutura.</p>
 <p align="center">
-<img src="imgs/estrutura.png"> 
+<img src="imgs/nomes.png"> 
 </p>
+<p align="justify">Conforme a figura na Lista teremos  o vetor de 100 posições com os nomes e dois ponteiros o Primeiro aponta para o início do vetor de nomes e o Ultimo aponta para a última posição psossível para inserir do vetor com nomes</p>
 
-<p align="justify">Os métodos a seguir servem para deixar a lista vazia e para imprimmir a lista, na hora de imprimir não são mostrados os espaços em brancos que aparecem depois de remover as repetições:</p>
+<p align="justify">Para se remover utiliza-se a mesma método lógica do algoritmo citado está sendo primeiro achar a posição do item no vetor, depois puxar todos os itens à frente do item a ser removiodo uma posição e no final atualizar o ponteiro de Ultimo, a imagem a seguir ilustra está lógica.</p>
 <p align="center">
-<img align="center" src="imgs/parte1.png">
+<img align="center" src="imgs/remocao.png">
 </p>
 
-<p align="justify">Para inserir algum item na lista é utilizado o método a seguir, mas na hora de inserir é necessário procurar na lista se há algum espaço em branco na lista se haver o item é adicionado por cima senão haver espaço em branco o item é adicionado na ultima posição possível o método a lado mostra como é achado um espaço em branco:</p>
+<p align="justify">Para inserir um item na lista usa-se a mesma lógica do algoritmo citado com um adicional que é antes de inserir algo na lista deve-se ver se existe algum espaço na lista em branco se exister o novo nome é inserido por cima senão é colocado no final da lista, isto é acontece por causa de todas as repetições da lista erem apagadas e transformadas em espaços livres a onde novos nomes podem ser inseridos. A figura abaixo mostra a difrença entre os dois jeitos de inserir.</p>
 <p align="center">
-<img align="center" src="imgs/insere.png">
-<img align="center" src="imgs/acaharsb.png">
+<img align="center" src="imgs/insercao-livre.png">
+<img align="center" src="imgs/insercao-ultimo.png">
 </p>
 
-<p align="justify">Após a inserção de um item na lista precisa-se verificar se há algum nome repetido na lista que feito pelo método a seguir, quando um nome repetido é achado o valeu dele é mudado para vazio e rep para -1 para simbolizar que ele virou um espaço em branco:</p>
+<p align="justify">Como todas as repetições devem ser apagadas o método abaixo foi criado para fazer isto. Ele pega um nome da lista procura se ele está repetido na lista se estiver a posição a nde está reperida é tornada em um espaço em branco e o número de repetições(<strong>rep</strong>) do nome sendo analisado aumenta em 1,  isto ocorre com todos os nomes da lista. O método pula espaço em brancos pois eles não representam um nome</p>
 <p align="center">
 <img align="center" src="imgs/norepeat.png">
 </p>
 
-<p align="justify">Para remover algum item o progama utiliza o método a seguir:</p>
-<p align="center">
-<img align="center" src="imgs/remove.png">
-</p>
-
-<p align="justify">Para preencher a lista linear com os nomes há um método que lé os nomes de um arquivo passado pelo usuário, após todos os nomes serem inseridos a lista o método NoRepeat é chamado para tirar os nomes repitidos:</p>
-<p align="center">
-<img align="center" src="imgs/lerarquivo.png">
+<p align="justify">
+Os espaçoes em brancos são tratados como espaços aonde novos nomes podem ser inseridos. O novo custo para inserções será o custo para verificar se há espaços em brancos se houver colocar por cima deles senão colocar na última posição mais o custo de inserir mais o custo para ver se a alguma repetição na lista e se houver transformar em espaço em branco.
 </p>
 
 # Compilação e Execução
