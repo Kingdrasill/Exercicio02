@@ -26,8 +26,8 @@ Crie uma lista linear que consiga armazenar um conjunto de 100 nomes quaisquer, 
 
 <p align="justify">Para inserir um item na lista usa-se a mesma lógica do algoritmo citado com um adicional que é antes de inserir algo na lista deve-se ver se existe algum espaço na lista em branco se exister o novo nome é inserido por cima senão é colocado no final da lista, isto é acontece por causa de todas as repetições da lista erem apagadas e transformadas em espaços livres a onde novos nomes podem ser inseridos. A figura abaixo mostra a difrença entre os dois jeitos de inserir.</p>
 <p align="center">
-<img align="center" src="imgs/insercao-livre.png">
-<img align="center" src="imgs/insercao-ultimo.png">
+<img align="center" src="imgs/insercao-livre.png" width="500px">
+<img align="center" src="imgs/insercao-ultimo.png" width="500px">
 </p>
 
 <p align="justify">Como todas as repetições devem ser apagadas o método abaixo foi criado para fazer isto. Ele pega um nome da lista procura se ele está repetido na lista se estiver a posição a nde está reperida é tornada em um espaço em branco e o número de repetições(<strong>rep</strong>) do nome sendo analisado aumenta em 1,  isto ocorre com todos os nomes da lista. O método pula espaço em brancos pois eles não representam um nome</p>
